@@ -42,7 +42,7 @@ class Karma
     @robot.brain.data.karma = @cache
 
   obliterate: (thing) ->
-    @cache[thing] = -1000000
+    @cache[thing] -= -1000000
     @robot.brain.data.karma = @cache
 
   increment: (thing) ->
