@@ -41,6 +41,10 @@ class Karma
     delete @cache[thing]
     @robot.brain.data.karma = @cache
 
+  obliterate: (thing) ->
+    @cache[thing] = -1000000
+    @robot.brain.data.karma = @cache
+
   increment: (thing) ->
     @cache[thing] ?= 0
     @cache[thing] += 1
@@ -105,6 +109,14 @@ module.exports = (robot) ->
     msg.send "#{subject} has had its karma scattered to the winds."
 
   ###
+  # Listen for "karma obliterate x" and empty x's karma
+  ###
+  robot.hear /karma obliterate ?(\S+[^-\s])$/i, (msg) ->
+    subject = msg.match[1].toLowerCase()
+    karma.obliterate subject
+    msg.send "mwahahahahahaha"
+
+  ###
   # Function that handles best and worst list
   # @param msg The message to be parsed
   # @param title The title of the list to be returned
@@ -138,4 +150,3 @@ module.exports = (robot) ->
     match = msg.match[1].toLowerCase()
     if not (match in ["best", "worst"])
       msg.send "\"#{match}\" has #{karma.get(match)} karma."
-
