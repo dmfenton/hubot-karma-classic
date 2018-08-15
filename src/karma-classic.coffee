@@ -87,13 +87,13 @@ module.exports = (robot) ->
   ###
   robot.hear /@?(\S+[^+\s])\+\+(\s|$)/, (msg) ->
     subject = msg.match[1].toLowerCase()
-    if subject == "spork"
-      msg.send "https://media.giphy.com/media/5ftsmLIqktHQA/giphy.gif"
-    # else if subject == "idi"
-    #   msg.send ""
-    else
-      karma.increment subject
-      msg.send "#{subject} #{karma.incrementResponse()} (Karma: #{karma.get(subject)})"
+    # if subject == "spork"
+    #   msg.send "https://media.giphy.com/media/5ftsmLIqktHQA/giphy.gif"
+    # # else if subject == "idi"
+    # #   msg.send ""
+    # else
+    karma.increment subject
+    msg.send "#{subject} #{karma.incrementResponse()} (Karma: #{karma.get(subject)})"
 
   ###
   # Listen for "--" messages and decrement
