@@ -90,6 +90,10 @@ module.exports = (robot) ->
     karma.increment subject
     msg.send "#{subject} #{karma.incrementResponse()} (Karma: #{karma.get(subject)})"
 
+  robot.hear /spork\+\+(\s|$)/, (msg) ->
+    subject = msg.match[1].toLowerCase()
+    msg.send "https://media.giphy.com/media/5ftsmLIqktHQA/giphy.gif"
+
   ###
   # Listen for "--" messages and decrement
   ###
