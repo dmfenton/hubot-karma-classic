@@ -42,7 +42,7 @@ class Karma
     @robot.brain.data.karma = @cache
 
   obliterate: (thing) ->
-    @cache[thing] -= -1000000
+    @cache[thing] = @cache[thing] - 1000000
     @robot.brain.data.karma = @cache
 
   increment: (thing) ->
@@ -89,6 +89,8 @@ module.exports = (robot) ->
     subject = msg.match[1].toLowerCase()
     if subject == "spork"
       msg.send "https://media.giphy.com/media/5ftsmLIqktHQA/giphy.gif"
+    # else if subject == "idi"
+    #   msg.send ""
     else
       karma.increment subject
       msg.send "#{subject} #{karma.incrementResponse()} (Karma: #{karma.get(subject)})"
