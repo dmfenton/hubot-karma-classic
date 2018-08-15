@@ -111,7 +111,7 @@ module.exports = (robot) ->
   ###
   # Listen for "karma obliterate x" and empty x's karma
   ###
-  robot.hear /karma obliterate ?(\S+[^-\s])$/i, (msg) ->
+  robot.respond /karma obliterate ?(\S+[^-\s])$/i, (msg) ->
     subject = msg.match[1].toLowerCase()
     karma.obliterate subject
     msg.send "mwahahahahahaha"
